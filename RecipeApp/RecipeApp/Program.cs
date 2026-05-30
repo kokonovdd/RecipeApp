@@ -35,7 +35,7 @@ public static class Program
     builder.Services.AddScoped<RecipeService>();
 
     var app = builder.Build();
-
+        
     using (var scope = app.Services.CreateScope())
     {
       var db = scope.ServiceProvider.GetRequiredService<RecipesDbContext>();

@@ -1,0 +1,16 @@
+-- Id - ид, автоключ
+-- name - наименование блюда
+-- type_group_id - ид группы (1- Утро, 2- день, 3- вечер)
+-- start_date - День, в который работает данное блюдо
+-- dw - день недели, используемый для подгрузки
+-- sub_group_id - подгруппа (солёные, сладкие, жаренное и т.д.)
+-- data_info - меню в json
+create table
+  MenuSheduler(
+  id primary key,
+  name varchar(200),
+  type_group_id int,
+  start_date date,
+  dw_value int,
+  sub_group_id int,
+  data_info text);
