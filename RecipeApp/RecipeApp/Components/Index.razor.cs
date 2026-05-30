@@ -104,6 +104,14 @@ public partial class Index
   }
 
   /// <summary>
+  /// Добавить рецепт.
+  /// </summary>
+  private void AddMenu()
+  {
+    this.NavigationManager.NavigateTo("/menu/create");
+  }
+
+  /// <summary>
   /// Открыть рецепт.
   /// </summary>
   /// <param name="id">ИД рецепта, который нужно открыть.</param>

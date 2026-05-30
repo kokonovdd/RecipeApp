@@ -5,12 +5,19 @@
 @inject IJSRuntime Js
 
 <main>
-    <h1 class="text-center site-title">Рецепты</h1>
+    <h1 class="text-center site-title">Рецепты и меню</h1>
     <div class="search-and-add">
         <div class="search-container">
             <input type="text" class="form-control search-box" placeholder="Найти блюдо..." @bind="SearchText" />
         </div>
         <button class="btn btn-primary add-button mt-2" @onclick="AddRecipe">Добавить блюдо</button>
+    </div>
+
+    <div class="search-and-add">
+        <div class="search-container">
+            <input type="text" class="form-control search-box" placeholder="Найти меню..." @bind="SearchText" />
+        </div>
+        <button class="btn btn-primary add-button mt-2" @onclick="AddMenu">Добавить меню</button>
     </div>
 
 @if (recipes == null)
