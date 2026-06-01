@@ -1,0 +1,8 @@
+﻿@page "/menu/create"
+@inject MenuService MenuService
+@inject NavigationManager NavigationManager
+
+<MenuForm Menu="_menu"
+            OnSave="Save"
+            OnCancel="Cancel"
+            IsEditMode="false" />

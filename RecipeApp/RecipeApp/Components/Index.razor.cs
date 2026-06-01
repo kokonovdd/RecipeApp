@@ -23,6 +23,8 @@ public partial class Index
   /// </summary>
   private List<Recipe>? recipes;
 
+  private List<Menu>? dish;
+
   /// <summary>
   /// Текущая страница.
   /// </summary>
@@ -64,6 +66,16 @@ public partial class Index
     }
   }
 
+  private IEnumerable<Menu> FilteredMenu
+  {
+    get
+    {
+      return string.IsNullOrWhiteSpace(this.searchText)
+        ? this.dish!
+        : this.dish!.Where(r =>
+          r.Title.Contains(this.searchText, StringComparison.OrdinalIgnoreCase));
+    }
+  }
   /// <summary>
   /// Общее количество страниц.
   /// </summary>
@@ -79,6 +91,11 @@ public partial class Index
       .Take(PageSize)
     ?? [];
 
+  private IEnumerable<Menu> PagedMenu =>
+  this.FilteredMenu
+    .Skip((this.currentPage - 1) * PageSize)
+    .Take(PageSize)
+  ?? [];
   #endregion
 
   #region Базовый класс
@@ -87,6 +104,7 @@ public partial class Index
   protected override Task OnInitializedAsync()
   {
     this.recipes = this.RecipeService.GetRecipes();
+    this.dish = this.MenuService.GetMenu();
 
     return Task.CompletedTask;
   }
@@ -118,6 +136,11 @@ public partial class Index
   private void ViewRecipe(int id)
   {
     this.NavigationManager.NavigateTo($"/recipes/{id}");
+  }
+
+  private void ViewMenu(int id)
+  {
+    this.NavigationManager.NavigateTo($"/menu/{id}");
   }
 
   /// <summary>

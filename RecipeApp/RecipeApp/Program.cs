@@ -26,6 +26,8 @@ public static class Program
       .AddInteractiveServerComponents();
     builder.Services.AddDbContext<RecipesDbContext>(options =>
       options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+    builder.Services.AddDbContext<MenuDbContext>(options =>
+      options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
     builder.Services.Configure<FormOptions>(options =>
     {
       options.MultipartBodyLengthLimit = 10 * 1024 * 1024;
@@ -33,12 +35,14 @@ public static class Program
     builder.Services.AddRazorPages();
     builder.Services.AddServerSideBlazor();
     builder.Services.AddScoped<RecipeService>();
+    builder.Services.AddScoped<MenuService>();
 
     var app = builder.Build();
         
     using (var scope = app.Services.CreateScope())
     {
       var db = scope.ServiceProvider.GetRequiredService<RecipesDbContext>();
+      var db1 = scope.ServiceProvider.GetRequiredService<MenuDbContext>();
       db.Database.Migrate();
     }
 
