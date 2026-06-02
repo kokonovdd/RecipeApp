@@ -73,7 +73,7 @@ public partial class Index
       return string.IsNullOrWhiteSpace(this.searchText)
         ? this.dish!
         : this.dish!.Where(r =>
-          r.Title.Contains(this.searchText, StringComparison.OrdinalIgnoreCase));
+          r.Name.Contains(this.searchText, StringComparison.OrdinalIgnoreCase));
     }
   }
   /// <summary>

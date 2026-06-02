@@ -12,7 +12,7 @@ public partial class MenuCreate
 
   private readonly Menu _menu = new ()
   {
-    Dish = []
+    Dishes = []
   };
 
   #endregion

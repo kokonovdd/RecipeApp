@@ -1,9 +1,11 @@
-﻿using System;
-using System.IO;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Components;
+﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 using RecipeApp.Model;
+using RecipeApp.Services;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Threading.Tasks;
 
 namespace RecipeApp.Components;
 
@@ -13,11 +15,6 @@ namespace RecipeApp.Components;
 public partial class MenuForm
 {
   #region Поля и свойства
-
-  /// <summary>
-  /// Значение MarkDown текста описания рецепта.
-  /// </summary>
-  private string markdownValue = string.Empty;
 
   /// <summary>
   /// URL превью изображения рецепта.
@@ -60,7 +57,6 @@ public partial class MenuForm
   /// <inheritdoc/>
   protected override void OnInitialized()
   {
-    this.markdownValue = this.Menu.Content;
     this.imagePreviewUrl = this.Menu.ImagePath;
   }
 
@@ -77,7 +73,7 @@ public partial class MenuForm
   /// </summary>
   private void AddDish()
   {
-    this.Menu.Dish.Add(new Dish());
+    this.Menu.Dishes.Add(new Dish());
   }
 
   /// <summary>
@@ -86,7 +82,15 @@ public partial class MenuForm
   /// <param name="ingredient">Выбранный ингредиент.</param>
   private void RemoveDish(Dish dish)
   {
-    this.Menu.Dish.Remove(dish);
+    this.Menu.Dishes.Remove(dish);
+  }
+
+  private int? SelectedRecipeId { get; set; }
+  public List<Recipe> Recipes { get; set; } = new List<Recipe>();
+
+  protected override async Task OnInitializedAsync()
+  {
+    Recipes = null; //await MenuService.GetAllRecipesAsync();
   }
 
   /// <summary>
@@ -94,8 +98,6 @@ public partial class MenuForm
   /// </summary>
   private async Task Save()
   {
-    this.Menu.Content = this.markdownValue;
-
     await this.OnSave.InvokeAsync();
   }
 

@@ -1,26 +1,30 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.EntityFrameworkCore;
+using RecipeApp.Model;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.Common;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using Microsoft.EntityFrameworkCore;
-using RecipeApp.Model;
+using System.Net.Http;
+using System.Text.Json;
+using System.Threading.Tasks;
 
 namespace RecipeApp.Services;
 
 /// <summary>
-/// Сервис для работы с рецептами.
+/// Сервис для работы с меню.
 /// </summary>
 /// <param name="db">Контекст БД.</param>
 public class MenuService(MenuDbContext db)
 {
+  //private readonly IDbConnection _dbConnection;
+
   /// <summary>
   /// Получить все меню.
   /// </summary>
   /// <returns>Все меню.</returns>
   public List<Menu> GetMenu()
   {
-    /*return db.Dish
-      .Include(r => r.Dish)
-      .ToList();*/
     return null;
   }
 
@@ -33,6 +37,11 @@ public class MenuService(MenuDbContext db)
   {
     return db.Dish
       .FirstOrDefault(r => r.Id == id);
+  }
+
+  public async Task<List<Recipe>> GetAllRecipesAsync()
+  {
+    return null;
   }
 
   /// <summary>

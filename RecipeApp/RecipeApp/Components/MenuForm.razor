@@ -11,7 +11,7 @@
             <input
                 class="form-control menu-title-input mb-4"
                 placeholder="Введите название меню"
-                @bind="Menu.Title"/>
+                @bind="Menu.Name"/>
 
             <div class="image-upload-wrapper mb-4">
                 <label for="imageInput" class="image-upload-label">
@@ -31,32 +31,81 @@
                 <InputFile id="imageInput" class="d-none" OnChange="HandleFileSelected"/>
             </div>
 
-            <div class="mb-3">
+            @*Пока заккоментировал редактор, потому что не упёрся никуда, надо выборку сделать *@
+            @*@<div class="mb-3">
                 <h3>Меню</h3>
                 <MarkdownEditor
                     @bind-Value="markdownValue"/>
+            </div>*@
+
+            @*Блок для выбора даты создания меню*@
+            @page "/date-selector"
+            <h3>Выберите дату на которое создаётся меню</h3>
+            <InputDate @bind-Value="SelectedDate" class="form-control" />
+            <p>Выбранная дата: @SelectedDate?.ToString("d")</p>
+            @code 
+            {
+              private DateTime? SelectedDate { get; set; }
+            }
+
+            @*Блок для выбора утра/дня/вечера*@
+            <h3>Выберите время</h3>
+
+            <div>
+              <input type="checkbox" @bind="IsMorning" /> Утро
+            </div>
+            <div>
+              <input type="checkbox" @bind="IsDay" /> День
+            </div>
+            <div>
+              <input type="checkbox" @bind="IsEvening" /> Вечер
             </div>
 
-            <h5>Блюдо</h5>
+            <p>
+              Вы выбрали:
+              @if (IsMorning)
+              {
+                <span>Утро</span>
+              }
+              @if (IsDay)
+              {
+                <span>День</span>
+              }
+              @if (IsEvening)
+              {
+                <span>Вечер</span>
+              }
+            </p>
+            @code {
+              private bool IsMorning { get; set; } = false;
+              private bool IsDay { get; set; } = false;
+              private bool IsEvening { get; set; } = false;
+
+              private void ToggleMorning(ChangeEventArgs e)
+              {
+                IsMorning = (bool)e.Value;
+              }
+            }
+
+            <h5>Блюда</h5>
+            <button type="button" class="btn btn-secondary mb-3" @onclick="AddDish">+ Добавить блюдо</button>
 
             <div class="table-responsive">
-                <table class="table table-bordered блюдо-table">
+                <table class="table table-bordered ingredient-table">
                     <thead>
                     <tr>
                         <th style="width: 60%">Название</th>
-                        <th>Кол-во</th>
-                        <th></th>
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach (var ing in Menu.Dish)
+                    @foreach (var ing in Menu.Dishes)
                     {
                         <tr>
                             <td><input class="form-control" @bind="ing.Name"/></td>
                             <td>
                                 <div class="quantity-unit">
-                                    <input class="form-control form-control-sm" type="number" @bind="ing.Amount" style="max-width: 100px;"/>
-                                    <select class="form-select form-select-sm" @bind="ing.Unit" style="max-width: 100px;">
+                                    <input class="form-control form-control-sm" type="number" @bind="Menu.Dishes" style="max-width: 100px;"/>
+                                    <select class="form-select form-select-sm" @bind="Menu.Dishes" style="max-width: 100px;">
                                         @foreach (var unit in UnitTypeUtils.UnitTypes)
                                         {
                                             <option value="@unit">@UnitTypeUtils.GetUnitLabel(unit)</option>
@@ -71,19 +120,6 @@
                     }
                     </tbody>
                 </table>
-            </div>
-
-            <button type="button" class="btn btn-secondary mb-3" @onclick="AddDish">+ Добавить блюдо</button>
-
-            <div class="mt-4">
-                <div class="mt-4">
-                    <button type="submit" class="btn btn-primary">Сохранить</button>
-                    <button class="btn btn-secondary ms-2" @onclick="OnCancel">Отмена</button>
-
-                    <div class="text-danger mt-2">
-                        <ValidationMessage For="@(() => Menu.Title)"/>
-                    </div>
-                </div>
             </div>
         </div>
     </main>

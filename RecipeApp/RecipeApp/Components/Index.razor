@@ -87,13 +87,13 @@ else
         {
             <div class="recipe-item border-bottom pb-3 mb-3" @onclick="() => ViewRecipe(dish.Id)">
                 <div class="recipe-title">
-                    @dish.Title
+                    @dish.Name
                 </div>
 
-                @if (dish.Dish.Any())
+                @if (dish.Dishes.Any())
                 {
                     <div class="recipe-ingredients mt-1">
-                        @string.Join(", ", dish.Dish.Select(i => i.Name.ToLower()))
+                        @string.Join(", ", dish.Dishes.Select(i => i.Name.ToLower()))
                     </div>
                 }
             </div>
