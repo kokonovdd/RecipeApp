@@ -5,6 +5,7 @@ using RecipeApp.Services;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace RecipeApp.Components;
@@ -68,43 +69,42 @@ public partial class MenuForm
   {
   }
 
-  /// <summary>
-  /// Добавить ингредиент.
-  /// </summary>
   private void AddDish()
   {
-    this.Menu.Dishes.Add(new Dish());
+    this.NavigationManager.NavigateTo("/recipes/create");
   }
 
-  /// <summary>
-  /// Удалить выбранный ингредиент.
-  /// </summary>
-  /// <param name="ingredient">Выбранный ингредиент.</param>
+  private void AddDishes()
+  {
+    
+  }
+
   private void RemoveDish(Dish dish)
   {
     this.Menu.Dishes.Remove(dish);
   }
 
   private int? SelectedRecipeId { get; set; }
-  public List<Recipe> Recipes { get; set; } = new List<Recipe>();
 
-  protected override async Task OnInitializedAsync()
+  private void AddSelectedRecipe()
   {
-    Recipes = null; //await MenuService.GetAllRecipesAsync();
+    if (SelectedRecipeId.HasValue)
+    {
+      // Получите рецепт по ID
+      var recipe = RecipeService.GetRecipes().FirstOrDefault(r => r.Id == SelectedRecipeId.Value);
+      if (recipe != null)
+      {
+        var dish = new Dish { Name = recipe.Title};
+        Menu.Dishes.Add(dish);
+      }
+    }
   }
 
-  /// <summary>
-  /// Сохранить рецепт.
-  /// </summary>
   private async Task Save()
   {
     await this.OnSave.InvokeAsync();
   }
 
-  /// <summary>
-  /// Обработчик для выбора файла для изображения рецепта.
-  /// </summary>
-  /// <param name="e">Аргументы события.</param>
   private async Task HandleFileSelected(InputFileChangeEventArgs e)
   {
     const string UploadsFolder = "uploads";

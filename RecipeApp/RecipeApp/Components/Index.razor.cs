@@ -23,7 +23,7 @@ public partial class Index
   /// </summary>
   private List<Recipe>? recipes;
 
-  private List<Menu>? dish;
+  private List<Menu>? dishes;
 
   /// <summary>
   /// Текущая страница.
@@ -71,8 +71,8 @@ public partial class Index
     get
     {
       return string.IsNullOrWhiteSpace(this.searchText)
-        ? this.dish!
-        : this.dish!.Where(r =>
+        ? this.dishes!
+        : this.dishes!.Where(r =>
           r.Name.Contains(this.searchText, StringComparison.OrdinalIgnoreCase));
     }
   }
@@ -104,7 +104,7 @@ public partial class Index
   protected override Task OnInitializedAsync()
   {
     this.recipes = this.RecipeService.GetRecipes();
-    this.dish = this.MenuService.GetMenu();
+    this.dishes = this.MenuService.GetMenu();
 
     return Task.CompletedTask;
   }

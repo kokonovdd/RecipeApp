@@ -10,10 +10,7 @@ namespace RecipeApp.Services;
 public class MenuDbContext(DbContextOptions<MenuDbContext> options)
   : DbContext(options)
 {
-
-  /// <summary>
-  /// меню
-  /// </summary>
-  public DbSet<Menu> Dish { get; set; }
+  public DbSet<Dish> Dishes { get; set; }
+  public DbSet<Menu> Menu { get; set; }
 
 }

@@ -72,11 +72,11 @@ else
     <button class="btn btn-primary add-button mt-2" @onclick="AddMenu">Добавить меню</button>
   </div>
 
-@if (dish == null)
+@if (dishes == null)
 {
     <p>Загрузка...</p>
 }
-else if (!dish.Any())
+else if (!dishes.Any())
 {
     <p>блюд пока нет.</p>
 }

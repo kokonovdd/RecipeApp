@@ -1,5 +1,9 @@
 ﻿@using Microsoft.AspNetCore.Hosting
+@using System.Data
 @inject IWebHostEnvironment Env
+@inject NavigationManager NavigationManager
+@inject RecipeService RecipeService
+
 
 <EditForm Model="Menu"
           OnValidSubmit="Save"
@@ -31,13 +35,6 @@
                 <InputFile id="imageInput" class="d-none" OnChange="HandleFileSelected"/>
             </div>
 
-            @*Пока заккоментировал редактор, потому что не упёрся никуда, надо выборку сделать *@
-            @*@<div class="mb-3">
-                <h3>Меню</h3>
-                <MarkdownEditor
-                    @bind-Value="markdownValue"/>
-            </div>*@
-
             @*Блок для выбора даты создания меню*@
             @page "/date-selector"
             <h3>Выберите дату на которое создаётся меню</h3>
@@ -50,15 +47,16 @@
 
             @*Блок для выбора утра/дня/вечера*@
             <h3>Выберите время</h3>
-
-            <div>
-              <input type="checkbox" @bind="IsMorning" /> Утро
-            </div>
-            <div>
-              <input type="checkbox" @bind="IsDay" /> День
-            </div>
-            <div>
-              <input type="checkbox" @bind="IsEvening" /> Вечер
+            <div class="checkbox-container">
+              <label class="form-control">
+                <input type="checkbox" @bind="IsMorning" /> Утро
+              </label>
+              <label class="form-control">
+                <input type="checkbox" @bind="IsDay" /> День
+              </label>
+              <label class="form-control">
+                <input type="checkbox" @bind="IsEvening" /> Вечер
+              </label>
             </div>
 
             <p>
@@ -87,39 +85,47 @@
               }
             }
 
-            <h5>Блюда</h5>
-            <button type="button" class="btn btn-secondary mb-3" @onclick="AddDish">+ Добавить блюдо</button>
+            <h5>Выберите блюда для меню</h5>
+            <InputSelect @bind-Value="SelectedRecipeId" class="form-control">
+              <option value="">-- Выберите рецепт --</option>
+              @foreach (var recipe in RecipeService.GetRecipes())
+              {
+                <option value="@recipe.Id">@recipe.Title</option>
+              }
+            </InputSelect>
 
             <div class="table-responsive">
-                <table class="table table-bordered ingredient-table">
-                    <thead>
+              <table class="table table-bordered dish-table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%">Список выбранных блюд</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @foreach (var ing in Menu.Dishes)
+                  {
                     <tr>
-                        <th style="width: 60%">Название</th>
+                      <td><input class="form-control" @bind="ing.Name" /></td>
+                      <td>
+                        <button type="button" class="btn btn-outline-danger btn-sm" @onclick="() => RemoveDish(ing)">✕</button>
+                      </td>
                     </tr>
-                    </thead>
-                    <tbody>
-                    @foreach (var ing in Menu.Dishes)
-                    {
-                        <tr>
-                            <td><input class="form-control" @bind="ing.Name"/></td>
-                            <td>
-                                <div class="quantity-unit">
-                                    <input class="form-control form-control-sm" type="number" @bind="Menu.Dishes" style="max-width: 100px;"/>
-                                    <select class="form-select form-select-sm" @bind="Menu.Dishes" style="max-width: 100px;">
-                                        @foreach (var unit in UnitTypeUtils.UnitTypes)
-                                        {
-                                            <option value="@unit">@UnitTypeUtils.GetUnitLabel(unit)</option>
-                                        }
-                                    </select>
-                                </div>
-                            </td>
-                            <td>
-                                <button type="button" class="btn btn-outline-danger btn-sm" @onclick="() => RemoveDish(ing)">✕</button>
-                            </td>
-                        </tr>
-                    }
-                    </tbody>
-                </table>
+                  }
+                </tbody>
+              </table>
+            </div>
+            <button type="button" class="btn btn-secondary mb-3" @onclick="AddSelectedRecipe">+ Добавить выбранное блюдо</button>
+            <button type="button" class="btn btn-secondary mb-3" @onclick="AddDish">+ Создать новое блюдо</button>
+
+            <div class="mt-4">
+              <div class="mt-4">
+                <button type="submit" class="btn btn-primary">Сохранить</button>
+                <button class="btn btn-secondary ms-2" @onclick="OnCancel">Отмена</button>
+
+                <div class="text-danger mt-2">
+                  <ValidationMessage For="@(() => Menu.Name)" />
+                </div>
+              </div>
             </div>
         </div>
     </main>
