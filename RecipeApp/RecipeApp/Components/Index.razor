@@ -90,7 +90,7 @@ else
                     @dish.Name
                 </div>
 
-                @if (dish.Dishes.Any())
+          @if (dish.Dishes.Any())
                 {
                     <div class="recipe-ingredients mt-1">
                         @string.Join(", ", dish.Dishes.Select(i => i.Name.ToLower()))

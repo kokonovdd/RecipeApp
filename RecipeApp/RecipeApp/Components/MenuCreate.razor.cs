@@ -19,10 +19,6 @@ public partial class MenuCreate
 
   #region Методы
 
-  /// <summary>
-  /// Сохранить меню.
-  /// </summary>
-  /// <returns>Задача выполнения.</returns>
   private Task Save()
   {
     this.MenuService.AddMenu(this._menu);
@@ -31,9 +27,6 @@ public partial class MenuCreate
     return Task.CompletedTask;
   }
 
-  /// <summary>
-  /// Отменить создание меню.
-  /// </summary>
   private void Cancel()
   {
     this.NavigationManager.NavigateTo("/");

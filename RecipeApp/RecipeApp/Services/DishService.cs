@@ -9,7 +9,7 @@ namespace RecipeApp.Services;
 
 public class DishService(MenuDbContext db)
 {
-  public List<Dish> GetDishes() => (List<Dish>)db.Dishes
+  public List<Dish> GetDishes() => (List<Dish>)db.Dish
       .Include(r => r.Name)
       .ToList();
 }

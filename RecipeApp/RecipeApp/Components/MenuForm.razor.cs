@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
+using Microsoft.AspNetCore.Hosting;
 using RecipeApp.Model;
 using RecipeApp.Services;
 using System;
@@ -15,47 +16,37 @@ namespace RecipeApp.Components;
 /// </summary>
 public partial class MenuForm
 {
+  #region Внедрение зависимостей
+
+  [Inject]
+  private MenuDbContext Db { get; set; } = default!;
+
+  #endregion
+
   #region Поля и свойства
 
-  /// <summary>
-  /// URL превью изображения рецепта.
-  /// </summary>
   private string? imagePreviewUrl;
 
-  /// <summary>
-  /// Выбранный для изображения файл.
-  /// </summary>
   private IBrowserFile? selectedFile;
 
-  /// <summary>
-  /// Отображаемый рецепт.
-  /// </summary>
   [Parameter]
   public Menu Menu { get; set; } = new ();
 
-  /// <summary>
-  /// Обработчик события на сохранение.
-  /// </summary>
   [Parameter]
   public EventCallback OnSave { get; set; }
 
-  /// <summary>
-  /// Обработчик события отмены.
-  /// </summary>
   [Parameter]
   public EventCallback OnCancel { get; set; }
 
-  /// <summary>
-  /// Признак того, что рецепт открыт на редактирование.
-  /// </summary>
   [Parameter]
   public bool IsEditMode { get; set; }
+
+  private int SelectedGroupId { get; set; } = 1;
 
   #endregion
 
   #region Базовый класс
 
-  /// <inheritdoc/>
   protected override void OnInitialized()
   {
     this.imagePreviewUrl = this.Menu.ImagePath;
@@ -65,23 +56,18 @@ public partial class MenuForm
 
   #region Методы
 
-  private static void HandleInvalidSubmit()
-  {
-  }
+  private static void HandleInvalidSubmit(){}
 
   private void AddDish()
   {
     this.NavigationManager.NavigateTo("/recipes/create");
   }
 
-  private void AddDishes()
-  {
-    
-  }
-
   private void RemoveDish(Dish dish)
   {
     this.Menu.Dishes.Remove(dish);
+    this.Db.Dish.Remove(dish);
+    this.Db.SaveChanges();
   }
 
   private int? SelectedRecipeId { get; set; }
@@ -90,18 +76,26 @@ public partial class MenuForm
   {
     if (SelectedRecipeId.HasValue)
     {
-      // Получите рецепт по ID
       var recipe = RecipeService.GetRecipes().FirstOrDefault(r => r.Id == SelectedRecipeId.Value);
       if (recipe != null)
       {
-        var dish = new Dish { Name = recipe.Title};
-        Menu.Dishes.Add(dish);
+        var dish = new Dish
+        {
+          Name = recipe.Title,
+          recipe_id = recipe.Id,
+          group_id = SelectedGroupId,
+          menu_id = null
+        };
+        //Dish.Add(dish);
+        this.Db.Dish.Add(dish);
+        this.Db.SaveChanges();
       }
     }
   }
 
   private async Task Save()
   {
+    this.Menu.Content = this.Menu.Dishes.ToString();
     await this.OnSave.InvokeAsync();
   }
 

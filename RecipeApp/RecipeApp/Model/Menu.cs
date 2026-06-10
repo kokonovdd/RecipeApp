@@ -13,9 +13,10 @@ public class Menu
 {
   public int Id { get; set; }
   public string Name { get; set; }
-  public int group_id { get; set; }
+  public int GroupId { get; set; }
   public DateTime StartDate { get; set; }
   public string Content { get; set; }
   public string ImagePath { get; set; }
-  public ICollection<Dish> Dishes { get; set; }
+  public List<Dish> Dishes { get; set; } = [];
+  //public ICollection<Dish> Dishes { get; set; }
 }

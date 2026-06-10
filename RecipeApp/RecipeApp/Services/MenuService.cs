@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
 using System.Diagnostics.CodeAnalysis;
+using System.Diagnostics.Metrics;
 using System.Linq;
 using System.Net.Http;
 using System.Text.Json;
@@ -19,9 +20,13 @@ public class MenuService(MenuDbContext db)
 {
   public List<Menu> GetMenu()
   {
-    return null;/*db.Menu
-      .Include(d => d.Name)
-      .ToList();*/
+    // Проверяем, есть ли вообще меню в базе данных
+    if (!db.Menu.Any())
+      return new List<Menu>();
+   else
+      return db.Menu
+        .Include(m => m.Dishes)
+        .ToList();
   }
 
   public Menu? GetMenu(int id)
@@ -35,9 +40,9 @@ public class MenuService(MenuDbContext db)
     db.SaveChanges();
   }
 
-  public void AddMenu(Menu MenuInfo)
+  public void AddMenu(Menu menu)
   {
-    db.Menu.Add(MenuInfo);
+    db.Menu.Add(menu);
     db.SaveChanges();
   }
 
