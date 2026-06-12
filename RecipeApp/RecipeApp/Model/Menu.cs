@@ -11,12 +11,15 @@ namespace RecipeApp.Model;
 /// </summary>
 public class Menu
 {
+  [Key]
+  [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
   public int Id { get; set; }
-  public string Name { get; set; }
-  public int GroupId { get; set; }
-  public DateTime StartDate { get; set; }
-  public string Content { get; set; }
-  public string ImagePath { get; set; }
+
+  public string? Name { get; set; }
+  public int group_id { get; set; }
+  public DateTime? StartDate { get; set; }
+  [Column(TypeName = "jsonb")]
+  public string? Content { get; set; }
+  public string? ImagePath { get; set; }
   public List<Dish> Dishes { get; set; } = [];
-  //public ICollection<Dish> Dishes { get; set; }
 }

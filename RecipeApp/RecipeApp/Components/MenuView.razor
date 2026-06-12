@@ -1,0 +1,64 @@
+﻿@page "/menu/{Id:int}"
+@inject MenuService MenuService
+@inject NavigationManager NavigationManager
+@inject IJSRuntime Js
+
+<div class="recipe-view container p-4 rounded">
+  <div class="d-flex align-items-center mb-3">
+    <button class="btn btn-sm btn-outline-primary d-flex align-items-center me-auto" @onclick="GoBack">
+      <img src="icons/back.png" alt="Назад" width="16" class="me-2"/>
+      <span>Назад</span>
+    </button>
+  </div>
+
+  @if (menu == null)
+  {
+    <p>Загрузка...</p>
+  }
+  else
+  {
+    <div class="text-center">
+      <h2 class="fw-bold mb-3">@menu.Name</h2>
+
+      @if (!string.IsNullOrEmpty(menu.ImagePath))
+      {
+          <img src="@menu.ImagePath" class="recipe-image" />
+      }
+
+      <div class="d-flex justify-content-start gap-2 mb-4">
+        <button class="btn btn-sm btn-outline-secondary" @onclick="EditMenu">
+          <img src="icons/edit.png" alt="Редактировать" width="16" class="me-1"/>
+          Редактировать
+        </button>
+        <button class="btn btn-sm btn-outline-danger delete-btn" @onclick="ConfirmDelete">
+          <img src="icons/delete.png" alt="Удалить" width="16" class="me-1"/>
+          Удалить
+        </button>
+      </div>
+
+      <div class="table-responsive">
+        <table class="table table-bordered dish-table">
+          <thead>
+          <tr>
+            <th style="width: 60%">Название</th>
+            <th>Кол-во</th>
+            <th></th>
+          </tr>
+          </thead>
+          <tbody>
+          @foreach (var ing in menu.Dishes)
+          {
+            <tr>
+              <td>
+                <div class="form-control" style="background-color: transparent; border: none;">
+                  @ing.Name
+                </div>
+              </td>
+            </tr>
+          }
+            </tbody>
+        </table>
+      </div>
+    </div>
+  }
+</div>

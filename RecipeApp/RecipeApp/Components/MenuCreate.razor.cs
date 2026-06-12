@@ -3,21 +3,12 @@ using RecipeApp.Model;
 
 namespace RecipeApp.Components;
 
-/// <summary>
-/// Компонента для создания рецепта.
-/// </summary>
 public partial class MenuCreate
 {
-  #region Поля и свойства
-
   private readonly Menu _menu = new ()
   {
     Dishes = []
   };
-
-  #endregion
-
-  #region Методы
 
   private Task Save()
   {
@@ -29,8 +20,6 @@ public partial class MenuCreate
 
   private void Cancel()
   {
-    this.NavigationManager.NavigateTo("/");
+    this.NavigationManager.NavigateTo("/", forceLoad: true);
   }
-
-  #endregion
 }

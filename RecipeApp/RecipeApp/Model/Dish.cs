@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace RecipeApp.Model;
 
@@ -8,12 +9,13 @@ namespace RecipeApp.Model;
 public class Dish
 {
   public int Id { get; set; }
-  public string Name { get; set; }
+  public string? Name { get; set; }
   public int recipe_id { get; set; }
   public int group_id { get; set; }
   //public int menu_id { get; set; }
   public int? menu_id { get; set; }
 
   [ForeignKey(nameof(menu_id))]
-  public Menu Menu { get; set; }
+  [JsonIgnore]
+  public Menu? Menu { get; set; }
 }

@@ -138,7 +138,7 @@ public partial class Index
     this.NavigationManager.NavigateTo($"/recipes/{id}");
   }
 
-  private void ViewMenu(int id)
+  private void MenuView(int id)
   {
     this.NavigationManager.NavigateTo($"/menu/{id}");
   }

@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace RecipeApp.Components;
@@ -20,6 +21,8 @@ public partial class MenuForm
 
   [Inject]
   private MenuDbContext Db { get; set; } = default!;
+  [Inject]
+  private MenuService MenuService { get; set; } = default!;
 
   #endregion
 
@@ -31,6 +34,7 @@ public partial class MenuForm
 
   [Parameter]
   public Menu Menu { get; set; } = new ();
+  private Menu _menu => Menu;
 
   [Parameter]
   public EventCallback OnSave { get; set; }
@@ -47,9 +51,11 @@ public partial class MenuForm
 
   #region Базовый класс
 
+  private List<Recipe> _recipes = new();
   protected override void OnInitialized()
   {
     this.imagePreviewUrl = this.Menu.ImagePath;
+    this._recipes = this.RecipeService.GetRecipes().ToList();
   }
 
   #endregion
@@ -86,16 +92,25 @@ public partial class MenuForm
           group_id = SelectedGroupId,
           menu_id = null
         };
-        //Dish.Add(dish);
-        this.Db.Dish.Add(dish);
-        this.Db.SaveChanges();
+        Menu.Dishes.Add(dish);
+        //this.Db.Dish.Add(dish);
+        //this.Db.SaveChanges();
       }
     }
   }
 
   private async Task Save()
   {
-    this.Menu.Content = this.Menu.Dishes.ToString();
+    if (this.Menu.Dishes != null && this.Menu.Dishes.Any())
+    {
+      var dishNames = this.Menu.Dishes.Select(d => d.Name).ToList();
+      this.Menu.Content = JsonSerializer.Serialize(dishNames);
+    }
+    else
+    {
+      this.Menu.Content = "[]";
+    }
+
     await this.OnSave.InvokeAsync();
   }
 
