@@ -62,15 +62,22 @@ public class MenuService(IDbContextFactory<MenuDbContext> dbFactory)
     await db.SaveChangesAsync();
   }
 
-  public void DeleteMenu(int id)
+  public async Task DeleteMenuAsync(int id)
   {
     using var db = dbFactory.CreateDbContext();
 
-    var entity = db.Menu.FirstOrDefault(d => d.Id == id);
+    var entity = await db.Menu
+        .Include(m => m.Dishes)
+        .FirstOrDefaultAsync(d => d.Id == id);
+
     if (entity != null)
     {
+      if (entity.Dishes != null && entity.Dishes.Any())
+      {
+        db.Dish.RemoveRange(entity.Dishes);
+      }
       db.Menu.Remove(entity);
-      db.SaveChanges();
+      await db.SaveChangesAsync();
     }
   }
 }

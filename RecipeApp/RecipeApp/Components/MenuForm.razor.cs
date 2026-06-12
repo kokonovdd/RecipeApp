@@ -93,8 +93,6 @@ public partial class MenuForm
           menu_id = null
         };
         Menu.Dishes.Add(dish);
-        //this.Db.Dish.Add(dish);
-        //this.Db.SaveChanges();
       }
     }
   }

@@ -17,14 +17,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{81F7161A-A4D1-456F-ABA2-0FC277F693B1}|RecipeApp\\RecipeApp.csproj|d:\\educationproject\\csharpproject\\recipeapp\\recipeapp\\recipeapp\\components\\menuform.razor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{81F7161A-A4D1-456F-ABA2-0FC277F693B1}|RecipeApp\\RecipeApp.csproj|solutionrelative:recipeapp\\components\\menuform.razor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{81F7161A-A4D1-456F-ABA2-0FC277F693B1}|RecipeApp\\RecipeApp.csproj|d:\\educationproject\\csharpproject\\recipeapp\\recipeapp\\recipeapp\\components\\recipeview.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{81F7161A-A4D1-456F-ABA2-0FC277F693B1}|RecipeApp\\RecipeApp.csproj|solutionrelative:recipeapp\\components\\recipeview.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{81F7161A-A4D1-456F-ABA2-0FC277F693B1}|RecipeApp\\RecipeApp.csproj|d:\\educationproject\\csharpproject\\recipeapp\\recipeapp\\recipeapp\\components\\menuview.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{81F7161A-A4D1-456F-ABA2-0FC277F693B1}|RecipeApp\\RecipeApp.csproj|solutionrelative:recipeapp\\components\\menuview.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -34,47 +26,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 10,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Index.razor",
-              "DocumentMoniker": "D:\\EducationProject\\CSharpProject\\RecipeApp\\RecipeApp\\RecipeApp\\Components\\Index.razor",
-              "RelativeDocumentMoniker": "RecipeApp\\Components\\Index.razor",
-              "ToolTip": "D:\\EducationProject\\CSharpProject\\RecipeApp\\RecipeApp\\RecipeApp\\Components\\Index.razor*",
-              "RelativeToolTip": "RecipeApp\\Components\\Index.razor*",
-              "ViewState": "AgIAAFEAAAAAAAAAAAAAAF8AAAAhAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-06-12T15:29:25.069Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Index.razor.cs",
-              "DocumentMoniker": "D:\\EducationProject\\CSharpProject\\RecipeApp\\RecipeApp\\RecipeApp\\Components\\Index.razor.cs",
-              "RelativeDocumentMoniker": "RecipeApp\\Components\\Index.razor.cs",
-              "ToolTip": "D:\\EducationProject\\CSharpProject\\RecipeApp\\RecipeApp\\RecipeApp\\Components\\Index.razor.cs*",
-              "RelativeToolTip": "RecipeApp\\Components\\Index.razor.cs*",
-              "ViewState": "AgIAAHYAAAAAAAAAAAAawIcAAAAZAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-12T15:28:37.995Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "MenuForm.razor.cs",
-              "DocumentMoniker": "D:\\EducationProject\\CSharpProject\\RecipeApp\\RecipeApp\\RecipeApp\\Components\\MenuForm.razor.cs",
-              "RelativeDocumentMoniker": "RecipeApp\\Components\\MenuForm.razor.cs",
-              "ToolTip": "D:\\EducationProject\\CSharpProject\\RecipeApp\\RecipeApp\\RecipeApp\\Components\\MenuForm.razor.cs",
-              "RelativeToolTip": "RecipeApp\\Components\\MenuForm.razor.cs",
-              "ViewState": "AgIAAE8AAAAAAAAAAAAUwEQAAAAnAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-12T15:28:04.295Z",
-              "EditorCaption": ""
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
@@ -113,41 +66,54 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Index.razor.cs",
+              "DocumentMoniker": "D:\\EducationProject\\CSharpProject\\RecipeApp\\RecipeApp\\RecipeApp\\Components\\Index.razor.cs",
+              "RelativeDocumentMoniker": "RecipeApp\\Components\\Index.razor.cs",
+              "ToolTip": "D:\\EducationProject\\CSharpProject\\RecipeApp\\RecipeApp\\RecipeApp\\Components\\Index.razor.cs",
+              "RelativeToolTip": "RecipeApp\\Components\\Index.razor.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAKIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-12T16:42:27.184Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Index.razor",
+              "DocumentMoniker": "D:\\EducationProject\\CSharpProject\\RecipeApp\\RecipeApp\\RecipeApp\\Components\\Index.razor",
+              "RelativeDocumentMoniker": "RecipeApp\\Components\\Index.razor",
+              "ToolTip": "D:\\EducationProject\\CSharpProject\\RecipeApp\\RecipeApp\\RecipeApp\\Components\\Index.razor*",
+              "RelativeToolTip": "RecipeApp\\Components\\Index.razor*",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAM8AAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-06-12T16:33:45.338Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 2,
               "Title": "MenuView.razor.cs",
               "DocumentMoniker": "D:\\EducationProject\\CSharpProject\\RecipeApp\\RecipeApp\\RecipeApp\\Components\\MenuView.razor.cs",
               "RelativeDocumentMoniker": "RecipeApp\\Components\\MenuView.razor.cs",
               "ToolTip": "D:\\EducationProject\\CSharpProject\\RecipeApp\\RecipeApp\\RecipeApp\\Components\\MenuView.razor.cs",
               "RelativeToolTip": "RecipeApp\\Components\\MenuView.razor.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAdAAAAAAAAAA==",
+              "ViewState": "AgIAABcAAAAAAAAAAAAwwCIAAAADAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-06-12T15:23:32.628Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "MenuView.razor",
-              "DocumentMoniker": "D:\\EducationProject\\CSharpProject\\RecipeApp\\RecipeApp\\RecipeApp\\Components\\MenuView.razor",
-              "RelativeDocumentMoniker": "RecipeApp\\Components\\MenuView.razor",
-              "ToolTip": "D:\\EducationProject\\CSharpProject\\RecipeApp\\RecipeApp\\RecipeApp\\Components\\MenuView.razor",
-              "RelativeToolTip": "RecipeApp\\Components\\MenuView.razor",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAC4AAAASAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-06-12T15:19:22.365Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "RecipeView.razor",
-              "DocumentMoniker": "D:\\EducationProject\\CSharpProject\\RecipeApp\\RecipeApp\\RecipeApp\\Components\\RecipeView.razor",
-              "RelativeDocumentMoniker": "RecipeApp\\Components\\RecipeView.razor",
-              "ToolTip": "D:\\EducationProject\\CSharpProject\\RecipeApp\\RecipeApp\\RecipeApp\\Components\\RecipeView.razor",
-              "RelativeToolTip": "RecipeApp\\Components\\RecipeView.razor",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAHAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-06-12T15:19:04.328Z",
+              "DocumentIndex": 3,
+              "Title": "MenuForm.razor.cs",
+              "DocumentMoniker": "D:\\EducationProject\\CSharpProject\\RecipeApp\\RecipeApp\\RecipeApp\\Components\\MenuForm.razor.cs",
+              "RelativeDocumentMoniker": "RecipeApp\\Components\\MenuForm.razor.cs",
+              "ToolTip": "D:\\EducationProject\\CSharpProject\\RecipeApp\\RecipeApp\\RecipeApp\\Components\\MenuForm.razor.cs",
+              "RelativeToolTip": "RecipeApp\\Components\\MenuForm.razor.cs",
+              "ViewState": "AgIAAC0AAAAAAAAAAAAmwFoAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-12T15:28:04.295Z",
               "EditorCaption": ""
             }
           ]

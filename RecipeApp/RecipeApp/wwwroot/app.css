@@ -8,11 +8,12 @@ html, body {
 }
 
 main {
-    max-width: 800px;
-    margin: 20px auto;
-    background-color: #fffdf5;
-    padding: 3px;
-    border-radius: 12px;
+  max-width: 1200px;
+  width: 95%;
+  margin: 20px auto;
+  background-color: #fffdf5;
+  padding: 20px;
+  border-radius: 12px;
 }
 
 h1, h2, h3 {
@@ -36,6 +37,32 @@ button:hover, .btn:hover {
     background-color: #b5865e;
 }
 
+.text-center.site-title {
+  font-family: 'Montserrat', serif;
+  font-size: 2rem;
+  color: #3b2b2b;
+  border: 3px solid #604631;
+  padding: 0.5rem 2rem;
+  display: inline-block;
+  margin: 20px auto 40px auto;
+  text-align: center;
+}
+
+.row.g-4 {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  gap: 30px !important;
+  width: 100% !important;
+  align-items: flex-start !important;
+}
+
+.col-md-6 {
+  flex: 1 !important;
+  min-width: 0 !important;
+  display: block !important;
+}
+
 .recipe-card {
     background-color: #fff8ec;
     padding: 1rem;
@@ -54,8 +81,8 @@ button:hover, .btn:hover {
 }
 
 .text-center {
-    text-align: center;
-    padding: 2rem 0;
+  text-align: center;
+  width: 93%;
 }
 
 .site-title {

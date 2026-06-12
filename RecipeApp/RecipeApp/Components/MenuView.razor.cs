@@ -29,7 +29,7 @@ public partial class MenuView
     var confirmed = await this.Js.InvokeAsync<bool>("confirm", "Удалить меню?");
     if (confirmed)
     {
-      this.MenuService.DeleteMenu(this.Id);
+      this.MenuService.DeleteMenuAsync(this.Id);
       this.NavigationManager.NavigateTo("/");
     }
   }
@@ -37,5 +37,13 @@ public partial class MenuView
   private void GoBack()
   {
     this.NavigationManager.NavigateTo("/");
+  }
+
+  private void NavigateToRecipe(int recipeId)
+  {
+    if (recipeId > 0)
+    {
+      NavigationManager.NavigateTo($"/recipes/{recipeId}");
+    }
   }
 }
