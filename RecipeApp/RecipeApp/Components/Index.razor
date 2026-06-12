@@ -71,7 +71,6 @@
       <div class="col-md-6">
         <div class="search-and-add">
           <div class="search-container">
-            @* ИСПРАВЛЕНО: Своя независимая переменная для поиска меню *@
             <input type="text" class="form-control search-box" placeholder="Найти меню..." @bind="SearchText" />
           </div>
           <button class="btn btn-primary add-button mt-2 mb-3" @onclick="AddMenu">Добавить меню</button>
@@ -82,10 +81,9 @@
         
           @* Фильтр 1: Показать все *@
           <div class="filter-group-item border rounded mb-2 shadow-sm bg-white">
-            <div class="filter-header p-3 d-flex justify-content-between align-items-center"
+            <div class="filter-header p-2 d-flex justify-content-between align-items-center"
                  style="cursor: pointer; background-color: #fff8ec;" @onclick="() => SelectFilter(0)">
-              <span class="fw-bold text-dark">📋 Показать все меню</span>
-              <span class="badge bg-secondary">@GetMenuCountByGroup(0)</span>
+              <span class="fw-bold text-dark">Показать все меню</span>
             </div>
           </div>
 
@@ -93,11 +91,7 @@
           <div class="filter-group-item border rounded mb-2 shadow-sm bg-white">
             <div class="filter-header p-3 d-flex justify-content-between align-items-center"
                  style="cursor: pointer; background-color: #fff8ec;" @onclick="() => ToggleFilterSection(1)">
-              <span class="fw-bold text-primary">🌅 Утреннее меню</span>
-              <div class="d-flex align-items-center gap-2">
-                <span class="badge bg-primary">@GetMenuCountByGroup(1)</span>
-                <span>@(isMorningExpanded ? "▲" : "▼")</span>
-              </div>
+              <span class="fw-bold text-primary">Утреннее меню</span>
             </div>
             @if (isMorningExpanded)
             {
@@ -113,11 +107,7 @@
           <div class="filter-group-item border rounded mb-2 shadow-sm bg-white">
             <div class="filter-header p-3 d-flex justify-content-between align-items-center"
                  style="cursor: pointer; background-color: #fff8ec;" @onclick="() => ToggleFilterSection(2)">
-              <span class="fw-bold text-success">☀️ Дневное меню</span>
-              <div class="d-flex align-items-center gap-2">
-                <span class="badge bg-success">@GetMenuCountByGroup(2)</span>
-                <span>@(isDayExpanded ? "▲" : "▼")</span>
-              </div>
+              <span class="fw-bold text-success">Дневное меню</span>
             </div>
             @if (isDayExpanded)
             {
@@ -133,11 +123,7 @@
           <div class="filter-group-item border rounded mb-2 shadow-sm bg-white">
             <div class="filter-header p-3 d-flex justify-content-between align-items-center"
                  style="cursor: pointer; background-color: #fff8ec;" @onclick="() => ToggleFilterSection(3)">
-              <span class="fw-bold text-warning" style="color: #604631 !important;">🌙 Вечернее меню</span>
-              <div class="d-flex align-items-center gap-2">
-                <span class="badge bg-warning text-dark">@GetMenuCountByGroup(3)</span>
-                <span>@(isEveningExpanded ? "▲" : "▼")</span>
-              </div>
+            <span class="fw-bold text-success">Вечернее меню</span>
             </div>
             @if (isEveningExpanded)
             {
@@ -168,7 +154,6 @@
               <div class="menu-item border-bottom pb-3 mb-3" style="cursor: pointer;" @onclick="() => MenuView(dish.Id)">
                 <div class="menu-title d-flex justify-content-between align-items-center">
                   <span>@dish.Name</span>
-                  @* Небольшой маркер группы рядом с названием *@
                   <span class="small text-muted" style="font-size: 0.75rem;">
                     @(dish.group_id == 1 ? "🌅 Утро" : dish.group_id == 2 ? "☀️ День" : "🌙 Вечер")
                   </span>

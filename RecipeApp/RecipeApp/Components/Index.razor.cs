@@ -171,7 +171,7 @@ public partial class Index
   private void SelectFilter(int group)
   {
     this.selectedGroupId = group;
-    this.currentMenuPage = 1; // Сброс страницы при переключении категорий
+    this.currentMenuPage = 1;
   }
 
   private int GetMenuCountByGroup(int group)
